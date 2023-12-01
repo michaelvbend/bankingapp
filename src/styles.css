@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --main-bg-color: #EC8F0B;
+  --main-txt-color: #36454F;
+  --sec-bg-color: #04048B;
+  --sec-txt-color: #fff;
+  --highlight-color: #7C7CB4;
+  --warning-color: #E21B32;
+
+
+}
+
+* {
+  font-family: Myriad Light, sans-serif;
+
+}
+

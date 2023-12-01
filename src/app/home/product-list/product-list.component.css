@@ -1,0 +1,10 @@
+
+.product-dropdown{
+  width: 100%;
+  border: none;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+.dropdown-menu {
+  width: 100%; text-align: center; left:0; right:0;
+}

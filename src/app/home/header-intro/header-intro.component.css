@@ -1,0 +1,28 @@
+.summary {
+  /*background-color: var(--sec-bg-color);;*/
+  color: var(--main-txt-color);
+}
+
+.button-neutral {
+  background-color: var(--sec-bg-color);
+
+  padding: 5px 0;
+  border-radius: 5px;
+  border-color: slategray;
+}
+
+.introcard {
+  background: linear-gradient( rgba(4, 4, 0, 0.6), rgba(4, 4, 138, 0.1) ), image-set("./assets/background.jpg");
+  background-size: cover;
+}
+
+.card {
+  border-radius: 5px;
+  border-color: darkgrey;
+
+}
+
+.bold-text {
+  color: var(--sec-txt-color);
+  border-radius: 5px;
+}

@@ -1,0 +1,12 @@
+.header-bg {
+  background-color: var(--main-bg-color);
+}
+
+.navbar-collapse{
+  transition: all 0.2s;
+}
+
+.header-icon {
+  color: transparent;
+  border: none;
+}
