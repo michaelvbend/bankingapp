@@ -2,8 +2,11 @@
 .product-dropdown{
   width: 100%;
   border: none;
+  padding: 5px;
   margin: 10px 0;
   border-radius: 5px;
+  background-color: white;
+  border: lightgray 1px solid;
 }
 .dropdown-menu {
   width: 100%; text-align: center; left:0; right:0;

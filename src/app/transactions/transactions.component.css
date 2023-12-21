@@ -1,0 +1,11 @@
+.transaction-container {
+  background-color: white;
+  padding: 15px;
+  border: 1px var(--global-background) solid;
+  border-radius: 5px;
+}
+
+.title {
+  font-family: Myriad-Italic, sans-serif;
+
+}
