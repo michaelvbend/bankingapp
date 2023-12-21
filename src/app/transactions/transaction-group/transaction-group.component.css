@@ -1,3 +1,7 @@
 .transaction-group {
-  border-bottom: 1px solid lightgray;
+  margin-bottom: 0.5rem;
+  width: auto;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 5px;
 }

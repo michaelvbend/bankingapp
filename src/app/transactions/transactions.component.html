@@ -1,4 +1,17 @@
-<div class="transaction-container shadow">
-<h1 class="title">Transactions</h1>
-<app-transaction-group></app-transaction-group>
+<div class="transaction-container">
+  <div
+    class="title-container d-flex justify-content-between align-items-center"
+  >
+    <div class="title">Transactions</div>
+    <div class="button-excel d-flex justify-content-evenly fs-5">
+      <i class="bi bi-file-earmark-spreadsheet"></i>
+    </div>
+  </div>
+
+  <div *ngFor="let transaction of transactionMap | keyvalue : originalOrder">
+    <app-transaction-group
+      [dateGroup]="transaction.key"
+      [transaction]="transaction.value"
+    ></app-transaction-group>
+  </div>
 </div>
