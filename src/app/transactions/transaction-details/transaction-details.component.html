@@ -1,0 +1,18 @@
+<!-- transaction-detail.component.html -->
+<div class="container mt-4">
+  <h2 class="title">Transaction Details</h2>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ transaction.title }}</h5>
+      <p class="card-subtitle mb-2 text-muted">
+        Transaction ID: {{ transaction.id }}
+      </p>
+      <p class="card-text">Description: {{ transaction.description }}</p>
+      <p class="card-text">Date: {{ transaction.date }}</p>
+      <p class="card-text">From Account: {{ transaction.fromIBAN }}</p>
+      <p class="card-text">To Account: {{ transaction.toIBAN }}</p>
+      <p class="card-text">Amount: {{ transaction.amount }}</p>
+      <p class="card-text">Category: {{ transaction.category }}</p>
+    </div>
+  </div>
+</div>

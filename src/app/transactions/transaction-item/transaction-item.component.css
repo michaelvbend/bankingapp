@@ -5,9 +5,13 @@
 }
 
 .payment {
-  color: red;
+  background-color: lightcoral;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .receivement {
-  color: green;
+  background-color: lightgreen;
+  padding: 5px 10px;
+  border-radius: 5px;
 }

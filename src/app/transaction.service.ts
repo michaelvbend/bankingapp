@@ -122,4 +122,11 @@ export class TransactionService {
   getAllTransactions(): Transaction[] {
     return this.listOfTransactions;
   }
+
+  getTransactionById(transactionId: number) {
+    const transaction = this.listOfTransactions.filter(
+      (transaction) => transaction.id === transactionId
+    );
+    return transaction[0];
+  }
 }

@@ -1,14 +1,18 @@
 <hr />
-<div class="transaction-item d-flex justify-content-between align-items-center">
-  <div class="d-flex ms-1">
-    <i class="bi bi-bag me-3"></i>
-    <div>{{ transaction.title }}</div>
-  </div>
+<a [routerLink]="['transactiondetails', transaction.id]">
   <div
-    class="me-2"
-    [class.payment]="transaction.amount < 0"
-    [class.receivement]="transaction.amount > 0"
+    class="transaction-item d-flex justify-content-between align-items-center"
   >
-    <div>{{ transaction.amount }}</div>
+    <div class="d-flex ms-1">
+      <i class="bi bi-bag me-3"></i>
+      <div>{{ transaction.title }}</div>
+    </div>
+    <div
+      class="me-2"
+      [class.payment]="transaction.amount < 0"
+      [class.receivement]="transaction.amount > 0"
+    >
+      <div>{{ transaction.amount.toFixed(2) }}</div>
+    </div>
   </div>
-</div>
+</a>
