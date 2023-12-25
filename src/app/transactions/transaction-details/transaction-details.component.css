@@ -1,4 +1,23 @@
 .title {
   font-style: italic;
-  color: var(--sec-bg-color);
+  background-color: var(--sec-bg-color);
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 49%;
+}
+
+.button-goback {
+  background-color: grey;
+  color: white;
+}
+
+.button-requestpayment {
+  background-color: var(--main-bg-color);
+  color: white;
 }
