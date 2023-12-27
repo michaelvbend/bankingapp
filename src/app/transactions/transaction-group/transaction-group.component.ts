@@ -13,4 +13,8 @@ import { CommonModule } from '@angular/common';
 export class TransactionGroupComponent {
   @Input() dateGroup: string = '';
   @Input() transaction: any = [];
+
+  convertToDateString(date: string | number | Date) {
+    return new Date(date).toDateString();
+  }
 }

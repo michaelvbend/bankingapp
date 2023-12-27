@@ -1,5 +1,5 @@
 <div class="transaction-group shadow">
-  <h4 class="date">{{ dateGroup }}</h4>
+  <h4 class="date">{{ convertToDateString(dateGroup) }}</h4>
   <div *ngFor="let transaction of transaction">
     <app-transaction-item [transaction]="transaction"></app-transaction-item>
   </div>
