@@ -21,7 +21,6 @@ export class TransactionsComponent implements OnInit {
   ngOnInit(): void {
     this.transactions = this.transactionService.getAllTransactions();
     this.createMapFromTransactionList();
-    console.log(this.transactionMap);
   }
 
   originalOrder = (

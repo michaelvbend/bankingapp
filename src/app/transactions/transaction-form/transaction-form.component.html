@@ -13,9 +13,13 @@
           id="email"
           formControlName="amount"
         />
+        <span class="text-danger"
+              *ngIf="validateRequired('amount')">
+                                Amount is required
+                            </span>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-3" formGroupName="receiver">
         <label for="receiver" class="form-label">Receiver</label>
         <div class="mb-3">
           <button
@@ -42,6 +46,9 @@
           placeholder="IBAN"
           formControlName="receiverIban"
         />
+        <span class="text-danger"
+              *ngIf="validateRequired('receiver')">
+                                Please fill in receiver details                          </span>
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
@@ -51,6 +58,9 @@
           id="description"
           formControlName="description"
         />
+        <span class="text-danger"
+              *ngIf="validateRequired('description')">
+                                Description is too long                           </span>
       </div>
       <div class="mb-3 form-check">
         <input

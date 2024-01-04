@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import {FormGroup, FormControl, ReactiveFormsModule, Validators, FormArray} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -29,22 +29,38 @@ export class TransactionFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.transactionForm = new FormGroup({
-      amount: new FormControl(null),
-      receiverName: new FormControl(null),
-      receiverIban: new FormControl(null),
-      description: new FormControl(null),
+      amount: new FormControl(null, Validators.required),
+      receiver: new FormGroup({
+        receiverName: new FormControl(null, Validators.required),
+        receiverIban: new FormControl(null, Validators.required)
+      }),
+      description: new FormControl(null, Validators.maxLength(12)),
       saveInBook: new FormControl(null),
     });
   }
 
+
   onSubmit() {
+    if (this.transactionForm.valid){
+      alert("valid");
+    }
+
+    if(this.transactionForm.invalid){
+      this.transactionForm.setErrors({"error":true})
+    }
+
     console.log(this.transactionForm);
   }
 
   checkAddressBook(address: any) {
-    this.transactionForm.patchValue({
+    this.transactionForm.controls['receiver'].patchValue({
       receiverName: address.name,
       receiverIban: address.iban,
     });
+  }
+
+  validateRequired(control: string): boolean{
+  return !this.transactionForm.controls[control].valid && this.transactionForm.controls[control].touched || (!this.transactionForm.valid && this.transactionForm.hasError("error"));
+
   }
 }
