@@ -1,7 +1,7 @@
 .title {
-  font-family: Myriad Bold, sans-serif;
+  font-family: Myriad-LightItalic, sans-serif;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.9rem;
 }
 
 .title-container {
@@ -15,7 +15,6 @@
 .button-excel {
   background-color: green;
   padding: 5px 10px;
-
   border-radius: 5px;
   color: white;
 }

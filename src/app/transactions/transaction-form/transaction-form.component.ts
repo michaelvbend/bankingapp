@@ -48,8 +48,6 @@ export class TransactionFormComponent implements OnInit {
     if(this.transactionForm.invalid){
       this.transactionForm.setErrors({"error":true})
     }
-
-    console.log(this.transactionForm);
   }
 
   checkAddressBook(address: any) {
@@ -61,6 +59,9 @@ export class TransactionFormComponent implements OnInit {
 
   validateRequired(control: string): boolean{
   return !this.transactionForm.controls[control].valid && this.transactionForm.controls[control].touched || (!this.transactionForm.valid && this.transactionForm.hasError("error"));
+  }
 
+  validateTooLong(control: string): boolean{
+    return !this.transactionForm.controls[control].valid && this.transactionForm.controls[control].touched;
   }
 }

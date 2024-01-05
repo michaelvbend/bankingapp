@@ -53,13 +53,13 @@
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <input
-          type="string"
+          type="text"
           class="form-control"
           id="description"
           formControlName="description"
         />
         <span class="text-danger"
-              *ngIf="validateRequired('description')">
+              *ngIf="validateTooLong('description')">
                                 Description is too long                           </span>
       </div>
       <div class="mb-3 form-check">
@@ -116,19 +116,20 @@
           class="close"
           data-dismiss="modal"
           aria-label="Close"
+          style="border: none; background: none"
         >
-          <span aria-hidden="true">&times;</span>
+          <i class="bi bi-x-circle"></i>
         </button>
       </div>
       <div class="modal-body">
-        <div *ngFor="let address of addressBook" class="mb-3">
+        <div *ngFor="let address of addressBook; index as i" class="">
           <a (click)="checkAddressBook(address)" data-dismiss="modal">
             <span class="fw-bold">Name:</span>
             <span>{{ address.name }}</span>
             <br />
             <span class="fw-bold">IBAN:</span>
             <span>{{ address.iban }}</span>
-            <hr class="my-2" />
+            <hr *ngIf="i < addressBook.length - 1" class="my-2" />
           </a>
         </div>
       </div>

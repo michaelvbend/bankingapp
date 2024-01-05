@@ -119,8 +119,8 @@ export class TransactionService {
   ];
   constructor() {}
 
-  getAllTransactions(): Transaction[] {
-    return this.listOfTransactions;
+  getAllTransactions(start: number, batch: number): Transaction[] {
+    return this.listOfTransactions.sort((a: Transaction,b: Transaction) => b.date.getDate() - a.date.getDate()).slice(start, batch);
   }
 
   getTransactionById(transactionId: number) {

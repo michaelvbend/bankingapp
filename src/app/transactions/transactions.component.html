@@ -14,4 +14,9 @@
       [transaction]="transaction.value"
     ></app-transaction-group>
   </div>
+
+  <div infiniteScroll
+       [infiniteScrollDistance]="0.1"
+       (scrolled)="onScroll()">
+  </div>
 </div>
