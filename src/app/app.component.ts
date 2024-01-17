@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from "@angular/common/http";
+
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterOutlet,
     HomeComponent,
     HeaderComponent,
+    HttpClientModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
