@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, ReactiveFormsModule, Validators, FormArray} from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import {Transaction} from "../../transaction";
+import {TransactionService} from "../../transaction.service";
 
 @Component({
   selector: 'app-transaction-form',
@@ -27,6 +29,7 @@ export class TransactionFormComponent implements OnInit {
   ];
   transactionForm!: FormGroup;
 
+  constructor(private transactionService: TransactionService) {};
   ngOnInit(): void {
     this.transactionForm = new FormGroup({
       amount: new FormControl(null, Validators.required),
@@ -42,12 +45,26 @@ export class TransactionFormComponent implements OnInit {
 
   onSubmit() {
     if (this.transactionForm.valid){
-      alert("valid");
+      const transaction: Transaction = {
+        date: new Date(),
+        fromIBAN: "testiban",
+        toIBAN: this.transactionForm.value.receiver.receiverIban,
+        accountId: 12,
+        title: this.transactionForm.value.receiver.receiverName,
+        description: this.transactionForm.value.description,
+        amount: this.transactionForm.value.amount,
+        category: ""
+      }
+      this.createTransaction(transaction);
     }
 
     if(this.transactionForm.invalid){
       this.transactionForm.setErrors({"error":true})
     }
+  }
+
+  createTransaction(postData: Transaction){
+    this.transactionService.postTransaction(postData);
   }
 
   checkAddressBook(address: any) {
@@ -64,4 +81,6 @@ export class TransactionFormComponent implements OnInit {
   validateTooLong(control: string): boolean{
     return !this.transactionForm.controls[control].valid && this.transactionForm.controls[control].touched;
   }
+
+  protected readonly event = event;
 }

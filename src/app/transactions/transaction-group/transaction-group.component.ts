@@ -15,6 +15,7 @@ export class TransactionGroupComponent {
   @Input() transaction: any = [];
 
   convertToDateString(date: string | number | Date) {
+    console.log(date, typeof date);
     return new Date(date).toDateString();
   }
 }

@@ -14,10 +14,16 @@ export class TransactionService {
   //   return this.listOfTransactions.sort((a: Transaction,b: Transaction) => b.date.getDate() - a.date.getDate()).slice(start, batch);
   // }
 
-  getAllTransactions(start: number, batch: number): Transaction[]{
-    return this.listOfTransactions.sort((a: Transaction,b: Transaction) => b.date.getDate() - a.date.getDate()).slice(start, batch);
+  getAllTransactions(start: number, batch: number): Observable<any>{
+    return this.http.get("http://localhost:8080/transaction")
+
   }
 
+  postTransaction(postData: Transaction){
+    this.http.post("http://localhost:8080/transaction", postData).subscribe(response => {
+      console.log(response);
+    });
+  }
   getTransactionById(transactionId: number) {
     let httpParams = new HttpParams();
     let trans: Transaction[] = [];
