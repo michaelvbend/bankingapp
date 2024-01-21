@@ -36,8 +36,7 @@ export class TransactionsComponent implements OnInit{
   fetchTransactions(start: number, batch: number){
     this.transactionService.getAllTransactions(this.start, this.batch).subscribe((response: Transaction[]) => {
         let listOfTransactions: Transaction[] = response;
-
-     // listOfTransactions = listOfTransactions.sort((a: Transaction, b: Transaction) => b.date.getDate() - a.date.getDate()).slice(start, batch);
+     listOfTransactions = listOfTransactions.sort((a: Transaction, b: Transaction) => new Date(b['date']).getDate() - new Date(a['date']).getDate()).slice(start, batch);
         this.transactionList.next(listOfTransactions);
         this.createMapFromTransactionList();
 
@@ -46,10 +45,9 @@ export class TransactionsComponent implements OnInit{
   }
 
   onScroll () {
-    this.start = this.batch;
-    this.batch += 1;
-    this.fetchTransactions(this.start, this.batch);
-    this.createMapFromTransactionList();
+    //this.start = this.batch;
+    //this.batch += 1;
+    //this.fetchTransactions(this.start, this.batch);
 
   }
 
@@ -62,8 +60,7 @@ export class TransactionsComponent implements OnInit{
 
   createMapFromTransactionList() {
     this.transactions.forEach((transaction) => {
-      console.log(transaction)
-      let key = new Date(transaction.date).toUTCString();
+      let key = new Date(transaction.date).toLocaleDateString();
       if (this.transactionMap.has(key)) {
         const existingArray = this.transactionMap.get(key) || [];
         existingArray.push(transaction);

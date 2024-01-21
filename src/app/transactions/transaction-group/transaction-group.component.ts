@@ -13,9 +13,10 @@ import { CommonModule } from '@angular/common';
 export class TransactionGroupComponent {
   @Input() dateGroup: string = '';
   @Input() transaction: any = [];
-
+  amountOfCalls = 1
   convertToDateString(date: string | number | Date) {
-    console.log(date, typeof date);
+    console.log(this.amountOfCalls + " + " + date);
+    this.amountOfCalls++;
     return new Date(date).toDateString();
   }
 }

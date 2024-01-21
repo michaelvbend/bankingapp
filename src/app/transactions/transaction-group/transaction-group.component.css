@@ -5,3 +5,8 @@
   background-color: white;
   border-radius: 5px;
 }
+
+.date {
+  color: var(--sec-bg-color);
+
+}
