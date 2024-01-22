@@ -17,6 +17,7 @@ import {resetParseTemplateAsSourceFileForTest} from "@angular/compiler-cli/src/n
   styleUrl: './transactions.component.css',
 })
 export class TransactionsComponent implements OnInit{
+  newTransaction: boolean = false;
   transactions: Transaction[] = [];
   transactionList = new BehaviorSubject<Transaction[]>([]);
   transactionMap: any = new Map();
@@ -31,12 +32,14 @@ export class TransactionsComponent implements OnInit{
     this.transactions = transactions;
   })
     this.fetchTransactions(this.start, this.batch);
+
   }
 
   fetchTransactions(start: number, batch: number){
+    console.log("fetch")
     this.transactionService.getAllTransactions(this.start, this.batch).subscribe((response: Transaction[]) => {
         let listOfTransactions: Transaction[] = response;
-     listOfTransactions = listOfTransactions.sort((a: Transaction, b: Transaction) => new Date(b['date']).getDate() - new Date(a['date']).getDate()).slice(start, batch);
+     // listOfTransactions = listOfTransactions.sort((a: Transaction, b: Transaction) => new Date(b['date']).getDate() - new Date(a['date']).getDate()).slice(start, batch);
         this.transactionList.next(listOfTransactions);
         this.createMapFromTransactionList();
 
@@ -44,23 +47,29 @@ export class TransactionsComponent implements OnInit{
     )
   }
 
-  onScroll () {
-    //this.start = this.batch;
-    //this.batch += 1;
-    //this.fetchTransactions(this.start, this.batch);
 
+  onScroll () {
+    this.start = this.batch;
+    this.batch += 1;
+    this.fetchTransactions(this.start, this.batch);
   }
 
   originalOrder = (
     a: KeyValue<string, string>,
     b: KeyValue<string, string>
   ): number => {
-    return a.key > b.key ? -1 : b.key > a.key ? 1 : 0;
+    return new Date(a.key) > new Date(b.key) ? -1 : new Date(b.key) > new Date(a.key) ? 1 : 0;
   };
 
   createMapFromTransactionList() {
     this.transactions.forEach((transaction) => {
-      let key = new Date(transaction.date).toLocaleDateString();
+      const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      };
+      let key = new Date(transaction.date).toLocaleDateString("en-US");
       if (this.transactionMap.has(key)) {
         const existingArray = this.transactionMap.get(key) || [];
         existingArray.push(transaction);

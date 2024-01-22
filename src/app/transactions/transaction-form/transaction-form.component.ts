@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, ReactiveFormsModule, Validators, FormArray} from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 import {Transaction} from "../../transaction";
 import {TransactionService} from "../../transaction.service";
 
@@ -29,7 +29,7 @@ export class TransactionFormComponent implements OnInit {
   ];
   transactionForm!: FormGroup;
 
-  constructor(private transactionService: TransactionService) {};
+  constructor(private transactionService: TransactionService, private router: Router) {};
   ngOnInit(): void {
     this.transactionForm = new FormGroup({
       amount: new FormControl(null, Validators.required),
@@ -56,6 +56,7 @@ export class TransactionFormComponent implements OnInit {
         category: ""
       }
       this.createTransaction(transaction);
+      this.router.navigate(['/']);
     }
 
     if(this.transactionForm.invalid){

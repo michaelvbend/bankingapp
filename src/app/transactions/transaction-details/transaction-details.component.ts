@@ -20,8 +20,8 @@ export class TransactionDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.transactionId = this.route.snapshot.paramMap.get('id');
-    this.transaction = this.transService.getTransactionById(
+    this.transService.getTransactionById(
       Number(this.transactionId)
-    );
+    ).subscribe(res => this.transaction = res);
   }
 }

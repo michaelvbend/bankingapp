@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { TransactionItemComponent } from '../transaction-item/transaction-item.component';
-import { Transaction } from '../../transaction';
-import { CommonModule } from '@angular/common';
+import {ChangeDetectionStrategy, Component, DoCheck, Input, OnInit} from '@angular/core';
+import {TransactionItemComponent} from '../transaction-item/transaction-item.component';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-transaction-group',
@@ -9,14 +8,17 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, TransactionItemComponent],
   templateUrl: './transaction-group.component.html',
   styleUrl: './transaction-group.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TransactionGroupComponent {
+export class TransactionGroupComponent implements OnInit{
   @Input() dateGroup: string = '';
   @Input() transaction: any = [];
-  amountOfCalls = 1
+
+  ngOnInit() {
+    this.transaction.sort((a: { date: string | number | Date; }, b: { date: string | number | Date; }) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }
+
   convertToDateString(date: string | number | Date) {
-    console.log(this.amountOfCalls + " + " + date);
-    this.amountOfCalls++;
     return new Date(date).toDateString();
   }
 }

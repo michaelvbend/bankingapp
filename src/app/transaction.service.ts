@@ -14,6 +14,8 @@ export class TransactionService {
   //   return this.listOfTransactions.sort((a: Transaction,b: Transaction) => b.date.getDate() - a.date.getDate()).slice(start, batch);
   // }
 
+
+
   getAllTransactions(start: number, batch: number): Observable<any>{
     return this.http.get("http://localhost:8080/transaction")
 
@@ -26,13 +28,8 @@ export class TransactionService {
   }
   getTransactionById(transactionId: number) {
     let httpParams = new HttpParams();
-    let trans: Transaction[] = [];
     httpParams = httpParams.append("id", transactionId);
-    this.http.get<Transaction>("http://localhost:8080/transaction",{params: httpParams})
+    return this.http.get<Transaction>("http://localhost:8080/transaction",{params: httpParams})
       .pipe(map(response => response))
-      .subscribe(res => trans.push(res))
-
-
-  return trans[0];
   }
 }
