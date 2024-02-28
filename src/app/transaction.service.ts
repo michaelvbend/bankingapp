@@ -10,10 +10,6 @@ export class TransactionService {
   listOfTransactions: Transaction[] = [];
   constructor(private http: HttpClient) {}
 
-  // getAllTransactions(start: number, batch: number): Transaction[] {
-  //   return this.listOfTransactions.sort((a: Transaction,b: Transaction) => b.date.getDate() - a.date.getDate()).slice(start, batch);
-  // }
-
 
 
   getAllTransactions(start: number, batch: number): Observable<any>{

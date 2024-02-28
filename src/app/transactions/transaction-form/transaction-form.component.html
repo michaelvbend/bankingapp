@@ -1,4 +1,4 @@
-<div class="container mt-1">
+<div *ngIf="!formSuccessfull" class="container mt-1">
   <div class="card shadow-lg p-3">
     <h1 class="display-4">Transfer</h1>
     <small class="text-muted mb-2">
@@ -141,3 +141,4 @@
     </div>
   </div>
 </div>
+<app-transaction-form-success *ngIf="formSuccessfull"></app-transaction-form-success>

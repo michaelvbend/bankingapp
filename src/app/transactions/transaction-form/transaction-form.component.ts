@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormGroup, FormControl, ReactiveFormsModule, Validators, FormArray} from '@angular/forms';
 import {Router, RouterModule} from '@angular/router';
 import {Transaction} from "../../transaction";
 import {TransactionService} from "../../transaction.service";
+import {TransactionFormSuccessComponent} from "../transaction-form-success/transaction-form-success.component";
 
 @Component({
   selector: 'app-transaction-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, TransactionFormSuccessComponent],
   templateUrl: './transaction-form.component.html',
   styleUrl: './transaction-form.component.css',
 })
 export class TransactionFormComponent implements OnInit {
+  formSuccessfull = false;
   addressBook = [
     {
       name: 'John Lennon',
@@ -41,8 +43,6 @@ export class TransactionFormComponent implements OnInit {
       saveInBook: new FormControl(null),
     });
   }
-
-
   onSubmit() {
     if (this.transactionForm.valid){
       const transaction: Transaction = {
@@ -52,11 +52,11 @@ export class TransactionFormComponent implements OnInit {
         accountId: 12,
         title: this.transactionForm.value.receiver.receiverName,
         description: this.transactionForm.value.description,
-        amount: this.transactionForm.value.amount,
+        amount: -this.transactionForm.value.amount,
         category: ""
       }
       this.createTransaction(transaction);
-      this.router.navigate(['/']);
+      this.formSuccessfull = true;
     }
 
     if(this.transactionForm.invalid){

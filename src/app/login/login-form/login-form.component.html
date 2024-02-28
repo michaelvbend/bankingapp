@@ -1,0 +1,38 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="username" class="form-label">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="Email"
+          formControlName="userName"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+
+<!--        <span class="text-danger"-->
+<!--              *ngIf="validateRequired('receiver')">-->
+<!--                                Please fill in receiver details                          </span>-->
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-lg ms-2"
+          style="background-color: grey; color: white; border: none"
+
+        >
+          Login
+        </button>
+
+      </div>
+    </form>
